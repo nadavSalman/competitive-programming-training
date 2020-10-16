@@ -68,16 +68,16 @@ def swap_by_prefix(s,t,s_prefix,t_prefix):
     Returns:
         [tuple]: The function return tuple with two elements  : (s after swap with t prefix,t after wsap with s prefix).
     """
-    print('s prefix : ',s_prefix,' , t prefix : ',t_prefix)
+    #print('s prefix : ',s_prefix,' , t prefix : ',t_prefix)
     s_str_prefix = str_prefix(s,s_prefix)
-    print('s prefix : ',s_str_prefix)
+    #print('s prefix : ',s_str_prefix)
     t_str_prefix = str_prefix(t,t_prefix)
-    print('t prefix : ',t_str_prefix)
+    #print('t prefix : ',t_str_prefix)
 
-    s_after_wsap = t_str_prefix + s[s_prefix:s.__len__() + 1]
-    print('s_afte_wsap -> ',s_after_wsap)
-    t_after_swap = s_str_prefix + t[s_prefix:t.__len__() + 1]
-    print('t_afte_wsap -> ',t_after_swap)
+    s_after_wsap = t_str_prefix + s[s_prefix:s.__len__()]
+    #print('s_afte_wsap -> ',s_after_wsap)
+    t_after_swap = s_str_prefix + t[t_prefix:t.__len__()]
+    #print('t_afte_wsap -> ',t_after_swap)
 
     return (s_after_wsap,t_after_swap)
 
@@ -95,14 +95,20 @@ important linsks :
 - https://docs.python.org/3/faq/programming.html#how-do-i-write-a-function-with-output-parameters-call-by-reference
 '''
 def main():
-    s = 'bab'
-    t = 'bb'
+    print('question2/solution/solution.py')
 
-    print('s = ',s,' , t = ',t)
+    # swap_by_prefix('aaabba','ababba',1,3), ('abaaabba','abba')
 
-    s,t = swap_by_prefix(s,t,0,2)# re asaing s and t.
+    # s = 'aaabba'
+    # t = 'ababba'
 
-    print('s = ',s,' , t = ',t)
+
+
+    # print('s = ',s,' , t = ',t)
+
+    # s,t = swap_by_prefix(s,t,1,3)# re asaing s and t.
+
+    # print('s = ',s,' , t = ',t)
     
 
 
