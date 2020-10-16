@@ -47,37 +47,74 @@ output :
 '''
 
 
+'''
+Return prefix of a string.
+'''
 def str_prefix(str,prefix):
     return str[0:prefix]
 
-'''
-s na
-s_prefix and t_prefix are integer for the prefix.
-'''
+
+
+
 def swap_by_prefix(s,t,s_prefix,t_prefix):
+    """swap the given prefixes  for the given strings.
+
+    Args:
+        s (string): s string
+        t (string): t string
+        s_prefix (integer): s prefix
+        t_prefix (integer): t prefix
+
+    Returns:
+        [tuple]: The function return tuple with two elements  : (s after swap with t prefix,t after wsap with s prefix).
+    """
+    print('s prefix : ',s_prefix,' , t prefix : ',t_prefix)
     s_str_prefix = str_prefix(s,s_prefix)
     print('s prefix : ',s_str_prefix)
     t_str_prefix = str_prefix(t,t_prefix)
-    print('t prefix :',t_str_prefix)
+    print('t prefix : ',t_str_prefix)
 
-    print('t prefix + the rest of s = ',t_str_prefix + s[s_prefix:s.__len__() + 1])#+1 to include the last char
-    print('s prefix + the rest of t = ',s_str_prefix + t[s_prefix:t.__len__() + 1])
+    s_after_wsap = t_str_prefix + s[s_prefix:s.__len__() + 1]
+    print('s_afte_wsap -> ',s_after_wsap)
+    t_after_swap = s_str_prefix + t[s_prefix:t.__len__() + 1]
+    print('t_afte_wsap -> ',t_after_swap)
 
-    s = t_str_prefix + s[s_prefix:s.__len__()]
-    t = s_str_prefix + t[s_prefix:t.__len__()]
-    print('--------')
-    print()
-
-    #print(t_str_prefix + s[s_prefix:s.__len__()],s_str_prefix + t[s_prefix:t.__len__()])
+    return (s_after_wsap,t_after_swap)
 
 
 
+
+
+
+    
+
+
+'''
+important linsks :
+- https://stackoverflow.com/questions/986006/how-do-i-pass-a-variable-by-reference
+- https://docs.python.org/3/faq/programming.html#how-do-i-write-a-function-with-output-parameters-call-by-reference
+'''
 def main():
     s = 'bab'
     t = 'bb'
-    swap_by_prefix(s,t,2,0)
+
     print('s = ',s,' , t = ',t)
 
+    s,t = swap_by_prefix(s,t,0,2)# re asaing s and t.
+
+    print('s = ',s,' , t = ',t)
+    
+
+
+
+
+
+    # print('prefix(bab,-1) -> ',str_prefix(s,-1))
+    # print('prefix(bab,4) -> ',str_prefix(s,4))
+    # print('prefix(bab,0) -> ',str_prefix(s,0))
+    # print('prefix(bab,3) -> ',str_prefix(s,3))
+    # print('prefix(bab,2) -> ',str_prefix(s,2))
+    #swap_by_prefix(s,t,2,0)
 
     # result_of_wsaping = swap_by_prefix(s,t,1,0)
     # print('t = ',result_of_wsaping[0],' , s = ',result_of_wsaping[1])
