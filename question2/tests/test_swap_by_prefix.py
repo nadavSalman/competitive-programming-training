@@ -1,8 +1,7 @@
 import unittest
 import sys
 import os
-
-sys.path.append(os.getcwd()+'/solution')#to allaw import solution model (nat the best way ...)
+sys.path.append(os.getcwd()+'/question2/solution')#to allaw import solution model (nat the best way ...)
 from solution import swap_by_prefix
 
 class TestStringMethods(unittest.TestCase):
