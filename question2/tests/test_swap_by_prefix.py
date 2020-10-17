@@ -1,4 +1,7 @@
 import unittest
+from pyunitreport import HTMLTestRunner
+
+
 import sys
 import os
 sys.path.append(os.getcwd()+'/question2/solution')#to allaw import solution model (nat the best way ...)
@@ -26,4 +29,5 @@ class TestStringMethods(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    print(os.getcwd())
+    unittest.main(testRunner=HTMLTestRunner(output='unit_tests_report'))
