@@ -9,12 +9,12 @@ jobs:
     steps:
       - checkout 
       # - python/load-cache
-      # - python/install-deps
+      - python/install-deps
       # - python/save-cache
 
-      -run:
-        command: pip install -r requirements.txt
-        name: Install-Dependencies
+      # -run:
+      #   command: pip install -r requirements.txt
+      #   name: Install-Dependencies
 
       - run:
           command: python question2/tests/test_swap_by_prefix.py 
