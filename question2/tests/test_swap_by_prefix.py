@@ -19,6 +19,9 @@ class TestStringMethods(unittest.TestCase):
     self.assertEqual(swap_by_prefix('ababab','babababababababab',6,17),('babababababababab','ababab'))
 
 
+  def test_fail(self):
+    self.assertEqual(1,-1)
+
 
 
 
