@@ -27,7 +27,8 @@ class TestStringMethods(unittest.TestCase):
 
 
 
-
+'''
+Tests report using : https://github.com/httprunner/PyUnitReport
+'''
 if __name__ == '__main__':
-    print(os.getcwd())
     unittest.main(testRunner=HTMLTestRunner(output='unit_tests_report'))
