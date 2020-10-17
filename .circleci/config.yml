@@ -26,8 +26,8 @@ jobs:
           command: python question2/tests/test_swap_by_prefix.py 
           name: Test
 
-      - store_artifacts:
-        path: /reports/unit_tests_report
+      # - store_artifacts:
+      #   path: /reports/unit_tests_report
 
 workflows:
   main:
