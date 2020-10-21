@@ -1,4 +1,4 @@
-
+import os
 
 
 '''
@@ -51,10 +51,16 @@ output :
 Return prefix of a string.
 '''
 def str_prefix(str,prefix):
+    """[summary]
+
+    Args:
+        str ([type]): [description]
+        prefix ([type]): [description]
+
+    Returns:
+        [type]: [description]
+    """
     return str[0:prefix]
-
-
-
 
 def swap_by_prefix(s,t,s_prefix,t_prefix):
     """swap the given prefixes  for the given strings.
@@ -73,20 +79,36 @@ def swap_by_prefix(s,t,s_prefix,t_prefix):
     #print('s prefix : ',s_str_prefix)
     t_str_prefix = str_prefix(t,t_prefix)
     #print('t prefix : ',t_str_prefix)
-
     s_after_wsap = t_str_prefix + s[s_prefix:s.__len__()]
     #print('s_afte_wsap -> ',s_after_wsap)
     t_after_swap = s_str_prefix + t[t_prefix:t.__len__()]
     #print('t_afte_wsap -> ',t_after_swap)
-
     return (s_after_wsap,t_after_swap)
 
+def contain_one_type_of_char(str):
+    """[summary]
 
+    Args:
+        str ([type]): [description]
 
+    Returns:
+        [type]: [description]
+    """
+    if str.__len__() > 0:
+        first_char = str[0]
+        for character in str:
+            if character != first_char:
+                return False       
+    return True
 
-
-
-    
+def faind_minimum_sequence(s_str,t_str,s_prefix,t_prefix,l):
+    if contain_one_type_of_char(s_str) and contain_one_type_of_char(t_str):
+        print('number of operations : ',l.__len__())
+        print('operations : ',l)
+    for index1 in range(s_prefix,s_str.__len__()):
+        for index2 in range(t_prefix,t_str.__len__()):
+            swap_by_prefix(s_str,t_str,index1,index2)
+            faind_minimum_sequence(s_str,t_str,index1,index2,l.copy())
 
 
 '''
@@ -95,7 +117,7 @@ important linsks :
 - https://docs.python.org/3/faq/programming.html#how-do-i-write-a-function-with-output-parameters-call-by-reference
 '''
 def main():
-    print('question2/solution/solution.py')
+    print(os.getcwd(),'| question2/solution/solution.py')
 
     # swap_by_prefix('aaabba','ababba',1,3), ('abaaabba','abba')
 

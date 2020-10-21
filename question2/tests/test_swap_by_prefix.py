@@ -22,13 +22,10 @@ class TestStringMethods(unittest.TestCase):
     self.assertEqual(swap_by_prefix('ababab','babababababababab',6,17),('babababababababab','ababab'))
 
 
-  def test_test(self):
-    self.assertEqual(1,1)
-
 
 
 '''
 Tests report using : https://github.com/httprunner/PyUnitReport
 '''
 if __name__ == '__main__':
-    unittest.main(testRunner=HTMLTestRunner(output='unit_tests_report'))
+    unittest.main(testRunner=HTMLTestRunner(output='unit_tests_report'))  
