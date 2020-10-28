@@ -101,12 +101,32 @@ def contain_one_type_of_char(str):
                 return False       
     return True
 
+def f(s,t,si,ti):
+    #print('f entry ...')
+    if contain_one_type_of_char(s) and contain_one_type_of_char(t):
+        print('solution found')
+    elif si < s.__len__() and ti < t.__len__():
+        print('si < s.__len__() and ti < t.__len__()')
+        if contain_one_type_of_char(str_prefix(s,si)) and contain_one_type_of_char(str_prefix(t,ti)):
+            print('contain_one_type_of_char(str_prefix(s,si)) and contain_one_type_of_char(str_prefix(t,ti))')
+            new_s , new_t = swap_by_prefix(s,t,si,ti)
+            
+            for i1 in range(si,s.__len__()):
+                f(new_s,new_t,si + i1,ti)
+            
+            for i2 in range(ti,s.__len__()):
+                f(new_s,new_t,si,ti + i2)
+
+            #f(new_s,new_t,si + 1,ti + 1)
+
+
 def faind_minimum_sequence(s_str,t_str,s_prefix,t_prefix,l):
     if contain_one_type_of_char(s_str) and contain_one_type_of_char(t_str):
         print('number of operations : ',l.__len__())
         print('operations : ',l)
     for index1 in range(s_prefix,s_str.__len__()):
         for index2 in range(t_prefix,t_str.__len__()):
+            print(s_str,t_str,index1,index2)
             swap_by_prefix(s_str,t_str,index1,index2)
             faind_minimum_sequence(s_str,t_str,index1,index2,l.copy())
 
@@ -118,7 +138,9 @@ important linsks :
 '''
 def main():
     print(os.getcwd(),'| question2/solution/solution.py')
-
+    s = 'aaabba'
+    t = 'ababba'
+    f(s,t,0,0)
     # swap_by_prefix('aaabba','ababba',1,3), ('abaaabba','abba')
 
     # s = 'aaabba'
