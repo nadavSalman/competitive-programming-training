@@ -1,18 +1,6 @@
 import os
 
 
-def combo(s,t):
-    result = []
-    for i in range(0,s+1):
-        for j in range(0,t+1):
-            result.append((i,j))
-
-    for i in range(0,t+1):
-        for j in range(0,s+1):
-            result.append((i,j))
-
-    return result
-
 '''
 D. AB-Strings
 There are two strings s and t, consisting only of letters a and b. 
@@ -113,61 +101,34 @@ def contain_one_type_of_char(str):
                 return False       
     return True
 
+def f(s,t,si,ti):
+    #print('f entry ...')
+    if contain_one_type_of_char(s) and contain_one_type_of_char(t):
+        print('solution found')
+    elif si < s.__len__() and ti < t.__len__():
+        print('si < s.__len__() and ti < t.__len__()')
+        if contain_one_type_of_char(str_prefix(s,si)) and contain_one_type_of_char(str_prefix(t,ti)):
+            print('contain_one_type_of_char(str_prefix(s,si)) and contain_one_type_of_char(str_prefix(t,ti))')
+            new_s , new_t = swap_by_prefix(s,t,si,ti)
+            
+            for i1 in range(si,s.__len__()):
+                f(new_s,new_t,si + i1,ti)
+            
+            for i2 in range(ti,s.__len__()):
+                f(new_s,new_t,si,ti + i2)
+
+            #f(new_s,new_t,si + 1,ti + 1)
+
+
 def faind_minimum_sequence(s_str,t_str,s_prefix,t_prefix,l):
     if contain_one_type_of_char(s_str) and contain_one_type_of_char(t_str):
         print('number of operations : ',l.__len__())
         print('operations : ',l)
-    else:
-        if contain_one_type_of_char(str_prefix(s_str,s_prefix)) and contain_one_type_of_char(str_prefix(s_str,t_prefix)) and (s_str != '') and (t_str != ''):
-
-                print(s_str,t_str,s_prefix,t_prefix,l)
-                for index in  range(s_prefix,s_str.__len__() +1):
-                    if contain_one_type_of_char(str_prefix(s_str,index)):
-                        copied = l[:]
-                        copied.append((index,t_prefix))
-                        new_s,new_t = swap_by_prefix(s_str,t_str,index,t_prefix)
-                        faind_minimum_sequence(new_s,new_t,index,t_prefix,copied)
-                    
-                for index in  range(t_prefix,t_str.__len__() +1):
-                    if contain_one_type_of_char(str_prefix(t_str,index)):
-                        copied = l[:]
-                        copied.append((s_prefix,index))
-                        new_s,new_t = swap_by_prefix(s_str,t_str,s_prefix,index)
-                        faind_minimum_sequence(new_s,new_t,s_prefix,index,copied)
-                
-            
-            
-
-            # faind_minimum_sequence(s_str,t_str,index,s_prefix,l[:])
-            # l.append((s_prefix,t_prefix))
-            # faind_minimum_sequence(s_str,t_str,t_prefix + 1,s_prefix,l[:])
-            # faind_minimum_sequence(s_str,t_str,t_prefix ,s_prefix + 1,l[:])
-            # faind_minimum_sequence(s_str,t_str,t_prefix + 1,s_prefix + 1,l[:])
-            # new_s_str , new_t_str = swap_by_prefix(s_str,t_str,s_prefix,t_prefix)
-            # # faind_minimum_sequence(new_s_str,new_t_str,t_prefix + 1,s_prefix,l[:])
-            # # faind_minimum_sequence(new_s_str,new_t_str,t_prefix ,s_prefix + 1,l[:])
-            # faind_minimum_sequence(new_s_str,new_t_str,t_prefix + 1,s_prefix + 1,l[:])
-            # print(new_s_str,new_t_str,s_prefix,t_prefix,l)
-        else:
-            print(s_str,t_str,s_prefix,t_prefix,l)
-            print('fuck!!!')
-
-
-def combo(s,t):
-    result = []
-    for i in range(0,s+1):
-        for j in range(0,t+1):
-            result.append((i,j))
-
-    for i in range(0,t+1):
-        for j in range(0,s+1):
-            result.append((i,j))
-
-    return result
-   
-
-
-
+    for index1 in range(s_prefix,s_str.__len__()):
+        for index2 in range(t_prefix,t_str.__len__()):
+            print(s_str,t_str,index1,index2)
+            swap_by_prefix(s_str,t_str,index1,index2)
+            faind_minimum_sequence(s_str,t_str,index1,index2,l.copy())
 
 
 '''
@@ -177,6 +138,36 @@ important linsks :
 '''
 def main():
     print(os.getcwd(),'| question2/solution/solution.py')
-    faind_minimum_sequence('bab','bb',0,0,[])
+    s = 'aaabba'
+    t = 'ababba'
+    f(s,t,0,0)
+    # swap_by_prefix('aaabba','ababba',1,3), ('abaaabba','abba')
+
+    # s = 'aaabba'
+    # t = 'ababba'
+
+
+
+    # print('s = ',s,' , t = ',t)
+
+    # s,t = swap_by_prefix(s,t,1,3)# re asaing s and t.
+
+    # print('s = ',s,' , t = ',t)
+    
+
+
+
+
+
+    # print('prefix(bab,-1) -> ',str_prefix(s,-1))
+    # print('prefix(bab,4) -> ',str_prefix(s,4))
+    # print('prefix(bab,0) -> ',str_prefix(s,0))
+    # print('prefix(bab,3) -> ',str_prefix(s,3))
+    # print('prefix(bab,2) -> ',str_prefix(s,2))
+    #swap_by_prefix(s,t,2,0)
+
+    # result_of_wsaping = swap_by_prefix(s,t,1,0)
+    # print('t = ',result_of_wsaping[0],' , s = ',result_of_wsaping[1])
+
 if __name__ == "__main__":
     main()
