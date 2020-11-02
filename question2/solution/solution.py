@@ -106,16 +106,23 @@ def f(s,t,si,ti):
     if contain_one_type_of_char(s) and contain_one_type_of_char(t):
         print('solution found')
     elif si < s.__len__() and ti < t.__len__():
-        print('si < s.__len__() and ti < t.__len__()')
+        # print('si < s.__len__() and ti < t.__len__()')
         if contain_one_type_of_char(str_prefix(s,si)) and contain_one_type_of_char(str_prefix(t,ti)):
-            print('contain_one_type_of_char(str_prefix(s,si)) and contain_one_type_of_char(str_prefix(t,ti))')
-            new_s , new_t = swap_by_prefix(s,t,si,ti)
+            # print('contain_one_type_of_char(str_prefix(s,si)) and contain_one_type_of_char(str_prefix(t,ti))')
             
-            for i1 in range(si,s.__len__()):
-                f(new_s,new_t,si + i1,ti)
             
-            for i2 in range(ti,s.__len__()):
-                f(new_s,new_t,si,ti + i2)
+            
+            for i1 in range(si + 1,s.__len__()):
+                new_s , new_t = swap_by_prefix(s,t,si,ti)
+                print(new_s,new_t,i1,ti)
+                f(new_s,new_t,i1,ti)
+            
+
+            
+            for i2 in range(ti + 1,s.__len__()):
+                new_s , new_t = swap_by_prefix(s,t,si,ti)
+                print(new_s,new_t,si,i2)
+                f(new_s,new_t,si,i2)
 
             #f(new_s,new_t,si + 1,ti + 1)
 
