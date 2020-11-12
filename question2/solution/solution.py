@@ -126,12 +126,16 @@ def f(s,t,si,ti):
 
             #f(new_s,new_t,si + 1,ti + 1)
 
-
+db_solution = []
 def solution1(s,t,si,ti,visited):
     #print(s,t,si,ti,visited)
     if contain_one_type_of_char(s) and contain_one_type_of_char(t):
-        print('solution found - ',visited)
-    elif si < s.__len__() and ti < t.__len__() and ((si,ti) not in visited):
+        db_solution.append(visited.copy())
+        
+        if visited.__len__() < 6:
+            print(visited)
+        #print('solution found - ',visited)
+    elif si <= s.__len__() and ti <= t.__len__() and ((si,ti) not in visited):
         # print('si < s.__len__() and ti < t.__len__()')
         if contain_one_type_of_char(str_prefix(s,si)) and contain_one_type_of_char(str_prefix(t,ti)):
             # print('contain_one_type_of_char(str_prefix(s,si)) and contain_one_type_of_char(str_prefix(t,ti))')
@@ -139,12 +143,40 @@ def solution1(s,t,si,ti,visited):
             visited.append((si,ti))
             #print(visited)
             #print('~~~~~~~~~~~~~~~~~~~~~')
+            curent_entry_trrget = []
             for new_s_index in range(s.__len__() + 1):
                 for new_t_index in range(t.__len__() + 1): 
-                    # entry = (new_s_index,new_t_index)
+                    entry = (new_s_index,new_t_index)
+                    curent_entry_trrget.append(entry)
                     # print(entry)
                     # visited.append(entry)
-                    solution1(new_s,new_t,new_s_index,new_t_index,visited.copy())    
+                    solution1(new_s,new_t,new_s_index,new_t_index,visited.copy())
+            #print('~~~',curent_entry_trrget,'~~~')
+
+
+
+def faind_minimun_in_all_solution(solutions):    
+    min_sol = (-1,-1)
+    
+    if db_solution.__len__() >= 1:
+        min_sol = db_solution[0]
+
+    for sol in db_solution:
+        if sol.__len__() < min_sol.__len__():
+            min_sol = sol
+
+
+    return min_sol
+        
+
+
+
+
+
+
+
+
+
 
 
 
@@ -168,9 +200,17 @@ important linsks :
 '''
 def main():
     print(os.getcwd(),'| question2/solution/solution.py')
-    s = 'b'
+    s = 'aa'
     t = 'aba'
     solution1(s,t,0,0,[])
+    # print(faind_minimun_in_all_solution(db_solution))
+    # print(db_solution)
+    # s = 'b'
+    # t = 'aba'
+    #solution1(s,t,0,0,[])
+    #swap(0,1) -> s = ab t = ba
+    #swap(1,1) -> s = bb t = aa
+
     # swap_by_prefix('aaabba','ababba',1,3), ('abaaabba','abba')
 
     # s = 'aaabba'
