@@ -154,9 +154,9 @@ def solution1(s,t,si,ti,visited):
                     # print(entry)
                     # visited.append(entry)
                     solution1(new_s,new_t,new_s_index,new_t_index,visited.copy())
-            print('~~~~~~')
+            #print('~~~~~~')
             #print(curent_entry_trrget)
-            print('~~~~~~')
+            #print('~~~~~~')
             #print('~~~',curent_entry_trrget,'~~~')
 
 
@@ -201,7 +201,7 @@ def faind_minimum_sequence(s_str,t_str,s_prefix,t_prefix,l):
 
 
 
-def collect_all_solutions(db):
+# def collect_all_solutions(db):
     
     
     
