@@ -106,18 +106,80 @@ def f(s,t,si,ti):
     if contain_one_type_of_char(s) and contain_one_type_of_char(t):
         print('solution found')
     elif si < s.__len__() and ti < t.__len__():
-        print('si < s.__len__() and ti < t.__len__()')
+        # print('si < s.__len__() and ti < t.__len__()')
         if contain_one_type_of_char(str_prefix(s,si)) and contain_one_type_of_char(str_prefix(t,ti)):
-            print('contain_one_type_of_char(str_prefix(s,si)) and contain_one_type_of_char(str_prefix(t,ti))')
-            new_s , new_t = swap_by_prefix(s,t,si,ti)
+            # print('contain_one_type_of_char(str_prefix(s,si)) and contain_one_type_of_char(str_prefix(t,ti))')
             
-            for i1 in range(si,s.__len__()):
-                f(new_s,new_t,si + i1,ti)
             
-            for i2 in range(ti,s.__len__()):
-                f(new_s,new_t,si,ti + i2)
+            
+            for i1 in range(si + 1,s.__len__()):
+                new_s , new_t = swap_by_prefix(s,t,si,ti)
+                print(new_s,new_t,i1,ti)
+                f(new_s,new_t,i1,ti)
+            
+
+            
+            for i2 in range(ti + 1,s.__len__()):
+                new_s , new_t = swap_by_prefix(s,t,si,ti)
+                print(new_s,new_t,si,i2)
+                f(new_s,new_t,si,i2)
 
             #f(new_s,new_t,si + 1,ti + 1)
+
+db_solution = []
+def solution1(s,t,si,ti,visited):
+    #print(s,t,si,ti,visited)
+    if contain_one_type_of_char(s) and contain_one_type_of_char(t):
+        db_solution.append(visited.copy())
+        
+        if visited.__len__() < 6:
+            print(visited)
+        #print('solution found - ',visited)
+    elif si <= s.__len__() and ti <= t.__len__() and ((si,ti) not in visited):
+        # print('si < s.__len__() and ti < t.__len__()')
+        if contain_one_type_of_char(str_prefix(s,si)) and contain_one_type_of_char(str_prefix(t,ti)):
+            # print('contain_one_type_of_char(str_prefix(s,si)) and contain_one_type_of_char(str_prefix(t,ti))')
+            new_s , new_t = swap_by_prefix(s,t,si,ti)
+            visited.append((si,ti))
+            #print(visited)
+            #print('~~~~~~~~~~~~~~~~~~~~~')
+            curent_entry_trrget = []
+            for new_s_index in range(s.__len__() + 1):
+                for new_t_index in range(t.__len__() + 1): 
+                    entry = (new_s_index,new_t_index)
+                    curent_entry_trrget.append(entry)
+                    # print(entry)
+                    # visited.append(entry)
+                    solution1(new_s,new_t,new_s_index,new_t_index,visited.copy())
+            #print('~~~',curent_entry_trrget,'~~~')
+
+
+
+def faind_minimun_in_all_solution(solutions):    
+    min_sol = (-1,-1)
+    
+    if db_solution.__len__() >= 1:
+        min_sol = db_solution[0]
+
+    for sol in db_solution:
+        if sol.__len__() < min_sol.__len__():
+            min_sol = sol
+
+
+    return min_sol
+        
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def faind_minimum_sequence(s_str,t_str,s_prefix,t_prefix,l):
@@ -138,9 +200,17 @@ important linsks :
 '''
 def main():
     print(os.getcwd(),'| question2/solution/solution.py')
-    s = 'aaabba'
-    t = 'ababba'
-    f(s,t,0,0)
+    s = 'aa'
+    t = 'aba'
+    solution1(s,t,0,0,[])
+    # print(faind_minimun_in_all_solution(db_solution))
+    # print(db_solution)
+    # s = 'b'
+    # t = 'aba'
+    #solution1(s,t,0,0,[])
+    #swap(0,1) -> s = ab t = ba
+    #swap(1,1) -> s = bb t = aa
+
     # swap_by_prefix('aaabba','ababba',1,3), ('abaaabba','abba')
 
     # s = 'aaabba'
