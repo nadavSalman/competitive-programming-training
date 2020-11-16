@@ -126,6 +126,8 @@ def f(s,t,si,ti):
 
             #f(new_s,new_t,si + 1,ti + 1)
 
+
+
 db_solution = []
 def solution1(s,t,si,ti,visited):
     #print(s,t,si,ti,visited)
@@ -133,7 +135,8 @@ def solution1(s,t,si,ti,visited):
         db_solution.append(visited.copy())
         
         if visited.__len__() < 6:
-            print(visited)
+            pass
+            #print(visited)
         #print('solution found - ',visited)
     elif si <= s.__len__() and ti <= t.__len__() and ((si,ti) not in visited):
         # print('si < s.__len__() and ti < t.__len__()')
@@ -151,6 +154,9 @@ def solution1(s,t,si,ti,visited):
                     # print(entry)
                     # visited.append(entry)
                     solution1(new_s,new_t,new_s_index,new_t_index,visited.copy())
+            print('~~~~~~')
+            #print(curent_entry_trrget)
+            print('~~~~~~')
             #print('~~~',curent_entry_trrget,'~~~')
 
 
@@ -193,6 +199,13 @@ def faind_minimum_sequence(s_str,t_str,s_prefix,t_prefix,l):
             faind_minimum_sequence(s_str,t_str,index1,index2,l.copy())
 
 
+
+
+def collect_all_solutions(db):
+    
+    
+    
+
 '''
 important linsks :
 - https://stackoverflow.com/questions/986006/how-do-i-pass-a-variable-by-reference
@@ -204,7 +217,15 @@ def main():
     t = 'aba'
     solution1(s,t,0,0,[])
     # print(faind_minimun_in_all_solution(db_solution))
-    # print(db_solution)
+    
+    min_sol = db_solution[0]
+    
+    for sol in db_solution:
+        if sol.__len__() < min_sol.__len__():
+            min_sol = sol.copy()
+
+    print(min_sol)
+    #print(db_solution)
     # s = 'b'
     # t = 'aba'
     #solution1(s,t,0,0,[])

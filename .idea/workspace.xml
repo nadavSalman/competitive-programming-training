@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c1a6145b-5b64-40c5-a098-c90e40a89b59" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/question2/solution/solution.py" beforeDir="false" afterPath="$PROJECT_DIR$/question2/solution/solution.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +37,28 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager" selected="Python.test_swap_by_prefix">
+  <component name="RunManager" selected="Python.test_contain_one_type_of_char">
+    <configuration name="Unnamed" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="competitive-programming-training" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python3.6" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="cpq" type="PythonConfigurationType" factoryName="Python">
       <module name="competitive-programming-training" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -153,17 +172,18 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.Unnamed" />
       <item itemvalue="Python.cpq" />
       <item itemvalue="Python.question2" />
       <item itemvalue="Python.test_contain_one_type_of_char" />
+      <item itemvalue="Python.test_swap_by_prefix" />
       <item itemvalue="Python tests.Unittests in test_str_prefix.py" />
       <item itemvalue="Python tests.Unittests in tests" />
-      <item itemvalue="Python.test_swap_by_prefix" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.test_swap_by_prefix" />
         <item itemvalue="Python.test_contain_one_type_of_char" />
+        <item itemvalue="Python.test_swap_by_prefix" />
         <item itemvalue="Python tests.Unittests in tests" />
         <item itemvalue="Python.question2" />
         <item itemvalue="Python tests.Unittests in test_str_prefix.py" />
@@ -193,10 +213,10 @@
     </history-entry>
   </component>
   <component name="WindowStateProjectService">
-    <state x="765" y="390" width="1084" height="732" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604004704185">
+    <state x="765" y="390" width="1084" height="780" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604668956994">
       <screen x="55" y="27" width="2505" height="1413" />
     </state>
-    <state x="765" y="390" width="1084" height="732" key="#com.intellij.execution.impl.EditConfigurationsDialog/55.27.2505.1413@55.27.2505.1413" timestamp="1604004704185" />
+    <state x="765" y="390" width="1084" height="780" key="#com.intellij.execution.impl.EditConfigurationsDialog/55.27.2505.1413@55.27.2505.1413" timestamp="1604668956994" />
     <state x="941" y="497" width="723" height="471" key="MultipleFileMergeDialog" timestamp="1604004601193">
       <screen x="55" y="27" width="2505" height="1413" />
     </state>
