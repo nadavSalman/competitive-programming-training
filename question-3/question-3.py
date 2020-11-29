@@ -5,7 +5,7 @@ B_SIZE = 2*A_SIZE - 1
 
 def define_ab():
     
-    a = [0,0,1,3]
+    a = [0,2,5,8]
     b = [0] * (B_SIZE +1)
     
     for i in range(1,A_SIZE+1):
@@ -65,6 +65,14 @@ def sort_zogi_e_zogi(sequnces):
     print(l_e_zogi,'\n',l_zogi)
     return l_zogi, l_e_zogi
 
+def merge(a,e_zogi):
+    print(a)
+    l_merge = []
+    for i in range(1,len(a)):
+        l_merge.append([a[i]])
+        if i < len(a)-1:
+            l_merge.append(e_zogi[i-1])
+    print(l_merge)
 
  
 def condition():
@@ -80,7 +88,7 @@ def main():
     sequnces = create_sequnce(a, options(a))
     
     zogi, e_zogi = sort_zogi_e_zogi(sequnces)
-   
+    merge(a,e_zogi)
 
 if __name__ == "__main__":
     main()
