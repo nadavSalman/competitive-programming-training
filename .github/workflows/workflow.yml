@@ -15,9 +15,10 @@ jobs:
         python-version: 3.8
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install pylint
-        pip install PyUnitReport
+        pip install -r requirements.txt
+        #python -m pip install --upgrade pip
+        #pip install pylint
+        #pip install PyUnitReport
     - name: Run Tests
       run: |
         python -m unittest 
