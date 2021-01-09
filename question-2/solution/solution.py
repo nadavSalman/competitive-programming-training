@@ -212,6 +212,7 @@ important linsks :
 - https://docs.python.org/3/faq/programming.html#how-do-i-write-a-function-with-output-parameters-call-by-reference
 '''
 def main():
+    print('Hi there black kiti')
     print(os.getcwd(),'| question2/solution/solution.py')
     s = 'aa'
     t = 'aba'
