@@ -4,8 +4,12 @@ from pyunitreport import HTMLTestRunner
 
 import sys
 import os
-sys.path.append(os.getcwd()+'/question2/solution')#to allaw import solution model (nat the best way ...)
-from solution import swap_by_prefix
+# sys.path.append(os.getcwd()+'/question2/solution')#to allaw import solution model (nat the best way ...)
+# from solution import swap_by_prefix
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))#Add to path parent dir.
+from solution.solution import swap_by_prefix
+
 
 class TestStringMethods(unittest.TestCase):
 
