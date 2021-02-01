@@ -10,7 +10,7 @@ import os
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))#Add to path parent dir.
 
-from solution.solution import *
+from solution_2.solution import *
 #from solution import contain_one_type_of_char
 
 

@@ -20,3 +20,5 @@ def place_mine(mine_map,index):
 
 def manual_activation(mine_map):
     pass
+
+

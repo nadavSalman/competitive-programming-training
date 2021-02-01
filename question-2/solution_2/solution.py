@@ -263,3 +263,10 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+def sambusak():
+    return 1
