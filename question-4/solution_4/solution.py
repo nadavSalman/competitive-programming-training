@@ -13,26 +13,36 @@ os.path.dirname(os.path.dirname(os.path.realpath('test_swap_by_prefix.py')))
 ->'/home/nadav/competitive-programming-training/question-2'
 >>> 
 '''
-
-def kuku_solution():
-    print('Kuku!!!')
-    return 1
-
-
-'''
-
-'''
+from util import place_mine , map_status , manual_activation
 
 
 
-def place_mine(mine_map,index):
-    #print('util / before / mine_map -> ',mine_map)
-    if mine_map[index] == "1":
-        raise RuntimeErro
-    mine_map = mine_map[:index] + "1" + mine_map[index + 1:]
-    #print('util / after / mine_map -> ',mine_map,'(update index 3)')
-    return mine_map
 
+def ciper_job(mine_map,index,manual_activation_price,place_mine_price):
+    if map_status(mine_map):
+        return 0
+    if index < mine_map.__len__():
+        #check if ther is a mine:
+        if mine_map[index] == '1':
+            #manual activation of the mine.
+            mine_map = manual_activation(mine_map,index)
+
+        else:#If there is no mine
+            #place a mine under a building.
+            mine_map = place_mine(mine_map,index)
+
+
+    else:
+        return mine_map.__len__() * manual_activation_price + mine_map.__len__() * place_mine_price # return max value to make shure the sequence of operation will not count as  the minimum number of coins that the sapper will have to pay.
+
+
+    
+    
+
+
+
+def solve():
+    pass
 
 def main():
     print('solution-4')
