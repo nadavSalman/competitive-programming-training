@@ -8,7 +8,7 @@ Bertown is a city with n buildings in(if there were no mines under the building,
 
 The city's security service discovered that some buildings were mined. A map was compiled, which is a string of length n, where the i-th character is "1" if there is a mine under the building number i and "0" otherwise.
 
-When a mine under the building numbered x is activated, it explodes and activates two adjacent mines under the buildings numbered x−1 and x+1 (if there were no mines under the building, then noth(if there were no mines under the building, then nothing happens).ing happens).
+    .ing happens).
 
 For manual activation of one mine, the sapper takes a coins. He can repeat this operation as many times as you want.
 Also, a sapper can place a mine under a building if it wasn't there. For such an operation, he takes b coins. He can also repeat this operation as many times as you want.
