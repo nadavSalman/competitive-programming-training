@@ -47,7 +47,7 @@ Example :
 for the given mine_map = "1011010" , index = 2:
 the outcame manual_activation(mine_map,index) will produce the blow sequesnce of operation.
 
--> active cell at index 2 -> "101*010" -> "10**010" ->  mine_map = "1000010"
+-> active cell at index 3 -> "101*010" -> "10**010" ->  mine_map = "1000010"
 
 
 the parameter mine_map is pass by ref.
@@ -74,6 +74,15 @@ def manual_activation(mine_map,index):
             manual_activation(mine_map,index + 1)
             manual_activation(mine_map,index - 1)
 
+
+def manual_activation_v2(mine_map,index):
+    if index >=0 and index < len(mine_map):
+        if mine_map[index] == '1':
+            mine_map = mine_map[:index] + "0" + mine_map[index + 1:]#transfer digit at index from 1 to 0.
+            new_mine_map = manual_activation_v2(mine_map,index + 1)
+            new_mine_map = manual_activation_v2(new_mine_map,index - 1)
+            return new_mine_map
+    return mine_map
 
 
             

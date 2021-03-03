@@ -13,7 +13,7 @@ os.path.dirname(os.path.dirname(os.path.realpath('test_swap_by_prefix.py')))
 ->'/home/nadav/competitive-programming-training/question-2'
 >>> 
 '''
-from util import place_mine , map_status , manual_activation
+from util import place_mine , map_status , manual_activation , manual_activation_v2
 
 
 
@@ -47,12 +47,13 @@ def solve():
 
 def main():
     print('solution-4')
+    print(manual_activation_v2("0111",2))
 
 if __name__ == "__main__":
     '''
     5 1
     01101110
     '''
-    my_mine_map = "01101110"
-    print(ciper_job(my_mine_map,0,5,1))
+    # my_mine_map = "01101110"
+    # print(ciper_job(my_mine_map,0,5,1))
     main()

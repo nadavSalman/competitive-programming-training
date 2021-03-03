@@ -74,6 +74,7 @@ def swap_by_prefix(s,t,s_prefix,t_prefix):
     Returns:
         [tuple]: The function return tuple with two elements  : (s after swap with t prefix,t after wsap with s prefix).
     """
+    return None
     #print('s prefix : ',s_prefix,' , t prefix : ',t_prefix)
     s_str_prefix = str_prefix(s,s_prefix)
     #print('s prefix : ',s_str_prefix)
