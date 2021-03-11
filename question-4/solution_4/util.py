@@ -70,11 +70,13 @@ def manual_activation(mine_map,index):
     if index >=0 and index <= mine_map.__len__():
         if mine_map[index] == '1':
             # mine_map = mine_map[:index] + "0" + mine_map[index + 1:]
-            mine_map[index] = 0#active mine at index .
+            mine_map[index] = '0'#active mine at index .
             manual_activation(mine_map,index + 1)
             manual_activation(mine_map,index - 1)
 
 
+
+# mine_map str param.
 def manual_activation_v2(mine_map,index):
     if index >=0 and index < len(mine_map):
         if mine_map[index] == '1':
