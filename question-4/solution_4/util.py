@@ -8,6 +8,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 '''
     Place nime inside the given map mine[index] = '1'
     If there is amine at the given index an RuntimeErro is raise .
+    Treat the nime map as string.
 '''
 def place_mine(mine_map,index):
     # print('util / before / mine_map -> ',mine_map)
@@ -18,9 +19,11 @@ def place_mine(mine_map,index):
     return mine_map
     
     #mine_map[index] = "1"
+
+
     
-
-
+def place_mine_list(mine_map,index):
+    mine_map[index] = '1'
 
 '''
 @param  (str) - mine_map 
@@ -67,9 +70,8 @@ map = '10110'
        out            out
 '''
 def manual_activation(mine_map,index):
-    if index >=0 and index <= mine_map.__len__():
+    if index >=0 and index < mine_map.__len__():
         if mine_map[index] == '1':
-            # mine_map = mine_map[:index] + "0" + mine_map[index + 1:]
             mine_map[index] = '0'#active mine at index .
             manual_activation(mine_map,index + 1)
             manual_activation(mine_map,index - 1)
