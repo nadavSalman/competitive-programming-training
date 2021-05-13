@@ -17,16 +17,16 @@ def place_mine(mine_map,index):
     mine_map = mine_map[:index] + "1" + mine_map[index + 1:]
     # print('util / after / mine_map -> ',mine_map,'(update index 3)')
     return mine_map
-    
+
     #mine_map[index] = "1"
 
 
-    
+
 def place_mine_list(mine_map,index):
     mine_map[index] = '1'
 
 '''
-@param  (str) - mine_map 
+@param  (str) - mine_map
 Check if the mine map is free of mine, then return True
 else return false.
 '''
@@ -34,15 +34,15 @@ def map_status(mine_map):
     for cell in mine_map:
         if cell == '1':
             return False
-    return True   
+    return True
 
 
 
 
 '''
 active mine at the index location.
-When a mine under the building numbered x is activated, 
-it explodes and activates two adjacent mines under the buildings numbered x−1 and x+1 
+When a mine under the building numbered x is activated,
+it explodes and activates two adjacent mines under the buildings numbered x−1 and x+1
 if there were no mines under the building, then nothing happens.
 
 
@@ -60,13 +60,13 @@ sence str in imutable object , we cant use it as ref param . so the map will be 
 Tracking :
 
 map = '10110'
-                        mc(map,3) 
+                        mc(map,3)
                         map -> '10100'
                         /             \
                 mc(map,2)              mc(map,4)
             map -> '10000'               out.
-           /             \            
-    mc(map,1)       mc(map,3)   
+           /             \
+    mc(map,1)       mc(map,3)
        out            out
 '''
 def manual_activation(mine_map,index):
@@ -89,7 +89,7 @@ def manual_activation_v2(mine_map,index):
     return mine_map
 
 
-            
+
 
 
 
