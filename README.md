@@ -19,3 +19,13 @@ structure of python ptoject : https://docs.python-guide.org/writing/structure/
 Each question folder is a module ?
 
 
+
+
+
+
+## Init venv :
+$python3 -m venv .  
+$source bin/activate   #Active 
+$deactivate            #Deactive
+
+

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import random
 import math
 
@@ -98,7 +97,3 @@ def main():
     
 if __name__ == "__main__":
     main()
-=======
-print('hi there question 1')
-print('kukuriku')
->>>>>>> e044eba5b30217dca55bc948334709722c5aea12

@@ -14,8 +14,8 @@ os.path.dirname(os.path.dirname(os.path.realpath('test_swap_by_prefix.py')))
 >>>
 '''
 from util import place_mine , map_status , manual_activation , manual_activation_v2 ,place_mine_list
-
 from ciper import Ciper
+
 
 
 
