@@ -19,17 +19,16 @@ jobs:
         #python -m pip install --upgrade pip
         #pip install pylint
         #pip install PyUnitReport
-    - name: Run Tests
-      run: |
-        python -m unittest 
-        python -m unittest -v
-
+ 
+  Run_Solutions:
+    runs-on: ubuntu-latest
+    steps:
     - uses: actions/checkout@v2
     - name: Set up Python 3.8
       uses: actions/setup-python@v1
       with:
         python-version: 3.8
-    - name: Run Solutions 1
+    - name: Install dependencies
       run: |
         python question-2/solution_2/solution.py
         python question-4/solution_4/solution.py
