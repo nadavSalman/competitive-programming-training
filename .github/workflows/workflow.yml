@@ -3,10 +3,8 @@ name: CI-Pipline
 on: [push]
 
 jobs:
-  build:
-
+  Build:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python 3.8
@@ -16,11 +14,24 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -r requirements.txt
-        #python -m pip install --upgrade pip
-        #pip install pylint
-        #pip install PyUnitReport
+
+
+  Test:
+    needs: Build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2      
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+    - name: Install dependencies
+      run: |
+        python -m unittest  -v
+   
  
   Run_Solutions:
+    needs: Test
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
