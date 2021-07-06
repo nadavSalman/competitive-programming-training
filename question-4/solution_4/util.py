@@ -113,14 +113,5 @@ def main():
     print(list_to_str_convertor([1,1,1,0,1,0]))
 
 
-    # mine_map_list = str_to_list_convert('10101001')
-    # print(mine_map_list)
-
-    # my_map = '10110'
-    # print('my_map before manual activation : ',my_map)
-    # manual_activation(my_map,3)
-    # print('my_map after  manual_activation(my_map,3) : ',my_map)
-
-
 if __name__ == "__main__":
     main()
