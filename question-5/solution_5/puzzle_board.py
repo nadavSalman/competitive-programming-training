@@ -18,15 +18,15 @@ class PuzzleBoard(object):
 
 
     '''
-    A get by reff funciton
+    A get by a board by-reff 
     '''
     def get_boad(self):
         return self.board
 
     '''
-    A get by value 
+    A get a board by-value 
     '''
     def get_board_copy(self):
-        pass
+        return self.board.copy()
 
 

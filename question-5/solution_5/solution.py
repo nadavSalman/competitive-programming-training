@@ -19,8 +19,11 @@ def main():
     #print(zeors_array)
     nadav_board = PuzzleBoard(int,6,9)
     print(nadav_board)
-    nadav_board.get_boad()[5][6] = 1
+    new_board = nadav_board.get_boad().copy()
+    new_board[1][4] = 8
     print(nadav_board.get_boad())
+    print("new board : ")
+    print(new_board)
 
 
 
