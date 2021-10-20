@@ -4,6 +4,23 @@ from puzzle_board import PuzzleBoard
 
 
 
+class PuzzleSolution(object):
+    """docstring for Ciper."""
+
+
+    def __init__(self,n_rows,m_columns):
+        self.board = PuzzleBoard(int,n_rows,m_columns)
+
+
+    '''
+    Perform a check on the given coordinate. 
+    If there is block of sand under it disturbed it forward. 
+    The prices continue recursively until we reach to an empty cell.
+    '''
+    def update_state(self,coordinate):
+        
+
+
 def main():
     print('solution 5')
     
