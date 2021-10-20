@@ -18,6 +18,7 @@ class PuzzleSolution(object):
     The prices continue recursively until we reach to an empty cell.
     '''
     def update_state(self,coordinate):
+        pass
         
 
 
