@@ -1,16 +1,22 @@
 import numpy
-from puzzle_board import PuzzleBoard
-
+import sys
+import os
+from solution_5.puzzle_board  import PuzzleBoard
+sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))#Add to path parent dir.
 
 
 
 class PuzzleSolution(object):
-    """docstring for Ciper."""
+    """docstring for Ciper.
+    A cell with the value :  0 - empy , 1 - is blocks of sand.
+    """
 
 
     def __init__(self,n_rows,m_columns):
         self.board = PuzzleBoard(int,n_rows,m_columns)
 
+    def get_board(self):
+        return self.board.get_boad()
 
     '''
     Perform a check on the given coordinate. 
@@ -19,36 +25,27 @@ class PuzzleSolution(object):
     '''
     def update_state(self,coordinate):
         pass
+
+
+
+    '''
+    Return true if the (i -> row ,j-> column) is blocks of sand, it not return false.
+    '''
+    def check_block(self,i,j):
+        return self.board.get_boad()[i][j] == 1
+
         
 
 
 def main():
     print('solution 5')
+    game = PuzzleSolution(9,11)
+    game.get_board()[7][6]  = 1
+    game.get_board()[3][8]  = 1
+    game.get_board()[4][2]  = 1
+    print(game.get_board()) 
+    print(game.check_block(7,3))  
+  
     
-    '''
-    Generate matrix of type int :
-        [[0 0 0 0 0 0 0]
-        [0 0 0 0 0 0 0]
-        [0 0 0 0 0 0 0]
-        [0 0 0 0 0 0 0]
-        [0 0 0 0 0 0 0]]
-    '''
-    zeors_array = numpy.zeros((5,7)).astype(int)
-    #print(zeors_array)
-    nadav_board = PuzzleBoard(int,6,9)
-    print(nadav_board)
-    new_board = nadav_board.get_boad().copy()
-    new_board[1][4] = 8
-    print(nadav_board.get_boad())
-    print("new board : ")
-    print(new_board)
-
-
-
-    
-
-
-
-
 if __name__ == "__main__":
     main()
