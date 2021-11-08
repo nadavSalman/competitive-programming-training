@@ -42,5 +42,5 @@ Examples
 ```
 
 ### Note
-For example 1, by disturbing both blocks of sand on the first row from the top at the first and sixth columns from the left, and the block of sand on the second row from the top and the fourth column from the left, it is possible to have all the required amounts of sand fall in each column. It can be proved that this is not possible with fewer than 3 operations, and as such the answer is 3. Here is the puzzle from the first example.
+For example 1, by disturbing both blocks of sand on the first row from the top at the first (0,0) and sixth columns (0,5) from the left, and the block of sand on the second row from the top and the fourth column from the left (1,3) , it is possible to have all the required amounts of sand fall in each column. It can be proved that this is not possible with fewer than 3 operations, and as such the answer is 3. Here is the puzzle from the first example.
 

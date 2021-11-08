@@ -13,13 +13,16 @@ class TestCheckBlock(unittest.TestCase):
     '''
 
 
-
+    def __init__(self):
+        self.game_board = PuzzleSolution(9,11)
+        self.row = 5
+        self.column = 7
     
 
 
     
     def test_check_block_contain_one_sand_block(self):
-        game_board = PuzzleSolution(9,11)
+        
         row = 5
         column = 7
         game_board.get_board()[row][column]  = 1
