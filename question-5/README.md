@@ -44,3 +44,59 @@ Examples
 ### Note
 For example 1, by disturbing both blocks of sand on the first row from the top at the first (0,0) and sixth columns (0,5) from the left, and the block of sand on the second row from the top and the fourth column from the left (1,3) , it is possible to have all the required amounts of sand fall in each column. It can be proved that this is not possible with fewer than 3 operations, and as such the answer is 3. Here is the puzzle from the first example.
 
+solution concluded : (0,0) -> (0,5) -> (1,3))
+
+
+----------------------------------------------------------------
+
+
+https://www.geeksforgeeks.org/generate-all-the-permutation-of-a-list-in-python/
+
+Case A :
+
+00#000#
+#000000
+#000000
+#00000#
+#00#000
+
+extract_sand_cells [ (0,2) , (0,6) , (1,0) , (2,0) , (3,0) , (4,0) , (4,3) , (3,6) ]
+
+ ~~~ Generate all permutation ~~~ 
+    * (Including subset with nothing)
+    all_permutation : [
+        [],
+        ...
+        [(0,2) , (4,0)],
+        ...
+        [(0,2) , (0,6) , (1,0)]
+        ...
+    ]
+
+
+Segested solution : 
+
+1. (0,2) -> (0,6) -> (1,0) -> (2,0) -> (3,0) -> (4,0) 
+
+2. (0,2) -> (4,0)  // Best solution !!! 
+    
+    Applay -> (0,2)
+    0000000
+    #000000
+    #000000
+    #00000#
+    #00#000
+
+    Applay -> (4,0)
+    0000000
+    0000000
+    0000000
+    0000000
+    0000000
+
+
+----------------------------------------------------------------
+
+
+
+
