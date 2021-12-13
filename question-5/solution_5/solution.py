@@ -4,26 +4,30 @@ import os
 from puzzle_board  import PuzzleBoard
 sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))#Add to path parent dir.
 
-
-
 class PuzzleSolution(object):
     """docstring for Ciper.
     A cell with the value :  0 - empy , 1 - is blocks of sand.
     """
 
-
     def __init__(self,n_rows,m_columns):
         self.board = PuzzleBoard(int,n_rows,m_columns)
         #self.extracted  = self.extract_sand_cells()
         self.extracted = []
-        self.extract_sand_cells()
+        #self.extract_sand_cells()#not get colled from the constructor
+        self.permutation_list = []
+        #self.init_permutation(0)
 
     def get_board(self):
         return self.board.get_boad()
 
+    def get_extracted(self):
+        return self.extracted
 
     def get_scaned_blocks(self):
         return self.scaned_blocks
+    
+    def get_permutation_list(self):
+        return self.permutation_list
 
     '''
     Perform a check on the given coordinate. 
@@ -36,14 +40,27 @@ class PuzzleSolution(object):
         pass
 
 
-
+    '''
+    A recurcive funciton.
+    Activate a cell at the coridnate in the board
+    @param: coridnate - (row,col)
+    
+    '''
 
     '''
-    def solve_puzzel(self,index):
-        if index < len(sand_cells):
-            if all_send_cells_activated(index) 
-    '''
+    def activate_cell(self,coridnate,index):
 
+
+
+    def solve_puzzel(self,):
+            min_steps = len(self.extracted)
+            best_path = []
+            for option in self.permutation_list:
+                # calculate path 'price'
+                # update min teps
+                # update best path 
+    '''
+    
     '''
     Return true if the (i -> row ,j-> column) is blocks of sand, it not return false.
     '''
@@ -55,6 +72,7 @@ class PuzzleSolution(object):
     Conver to lmbde / list comperhention expression 
     '''
     def extract_sand_cells(self):
+        print('extract_sand_cells')
         extracted_cells = []
         for row in range(0,len(self.board.get_boad())):
           for col in range(0,len(self.board.get_boad())):
@@ -62,41 +80,51 @@ class PuzzleSolution(object):
                 extracted_cells.append((row,col))
         #return extracted_cells
         self.extracted = extracted_cells
-                
+
+    
+    def init_permutation(self,index):
+        print('permutation is called on ',self.extracted)
+        if index < len(self.extracted):
+            for i in range(index ,len(self.extracted)):         
+                self.extracted[i] , self.extracted[index] = self.extracted[index] , self.extracted[i] 
+                self.init_permutation(index + 1)
+                self.extracted[i] , self.extracted[index] = self.extracted[index] , self.extracted[i] 
+        else:
+            self.permutation_list.append(self.extracted)
+              
 
             
-extornal_storage = []
-
-def permutation(array,index):
-    if index < len(array):
-        for i in range(index ,len(array)):         
-            array[i] , array[index] = array[index] , array[i] 
-            permutation(array.copy(),index + 1)
-            array[i] , array[index] = array[index] , array[i] 
-    else:
-        print(array)
 
 
     
-
+def test_permutation():
+    list = []
+    for i in range(1,5):
+        list.append(i)
+        print('~~~')
+        print('Prin permutation of : ',list)
+        permutation(list,0)
+        print('~~~')
 
         
 
 
 def main():
     print('solution 5')
-    permutation([1,2,3],0)
-    print(extornal_storage)
+
     
-    '''
+    
+    
+    
     game = PuzzleSolution(9,11)
     game.get_board()[7][6]  = 1
     game.get_board()[3][8]  = 1
     game.get_board()[4][2]  = 1
     print(game.get_board())
     game.extract_sand_cells()
-    print(game.extracted)
-    '''
+    game.init_permutation(0)
+    print(game.get_extracted())
+    print(game.get_permutation_list())
     
 if __name__ == "__main__":
     main()
