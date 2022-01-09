@@ -114,7 +114,8 @@ def main():
     game.solve_puzzle()
 
     # test cells activate vectors cordinates
-    
+    print('extract board width and height : w ->  ',game.board.board_width,' , h -> ',game.board.board_height )
+
 
     
 if __name__ == "__main__":
