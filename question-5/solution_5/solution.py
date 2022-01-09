@@ -17,9 +17,9 @@ class PuzzleSolution(object):
         #self.init_permutation(0)
 
     def get_board(self):
-        return self.board.get_boad()
+        return self.board.get_board()
 
-    def get_extracted(self):
+    def get_extracted(self):        
         return self.extracted
 
     def get_scaned_blocks(self):
@@ -28,15 +28,19 @@ class PuzzleSolution(object):
     def get_permutation_list(self):
         return self.permutation_list
 
-    '''
-    Perform a check on the given coordinate. 
-    If there is block of sand under it disturbed it forward. 
-    The disturbed continue recursively until we reach to an empty cell.
-    @param : 
-        - coordinate - a tuple with two integers.
-    '''
-    def update_state(self,coordinate,board_copy):
-        pass
+
+    def update_state(self,coordinate,source_board,cordinates_list):
+        """Disturbed the given block of sand forward. 
+        The disturbed continue recursively until we reach to an empty cell. 
+
+        Args:
+            coordinate ([Tuple]): (X,Y) 
+            source_board ([Two d list]): 
+            cordinates_list
+        """
+
+
+        
 
 
     def cell_activate(self,coordinate,board_copy):
@@ -50,9 +54,14 @@ class PuzzleSolution(object):
 
     
     
-    def calculate_path(self,cordinates_list,board_copy):
-        pass
-        #for index in cordinates_list:
+    def calculate_path(self,cordinates_list,board_copy,minimum,index,counter):
+        if index < len(cordinates_list):
+            # activate the i cell
+            x , y = cordinates_list[index][0] , cordinates_list[index][1] 
+            point_up = [(x,v) for v in range(0,self.board.board_height)]
+            
+            pass
+
        
     
     
@@ -64,15 +73,15 @@ class PuzzleSolution(object):
             print(cordinates)
 
     def check_block(self,i,j):
-        return self.board.get_boad()[i][j] == 1
+        return self.board.get_board()[i][j] == 1
 
     '''
     Conver to lmbde / list comperhention expression 
     '''
     def extract_sand_cells(self):
         extracted_cells = []
-        for row in range(0,len(self.board.get_boad())):
-          for col in range(0,len(self.board.get_boad())):
+        for row in range(0,len(self.board.get_board())):
+          for col in range(0,len(self.board.get_board())):
               if self.check_block(row,col):
                 extracted_cells.append((row,col))
         #return extracted_cells
@@ -92,6 +101,7 @@ def main():
     print('solution 5 \n\n')
     
     game = PuzzleSolution(9,11)
+    # Fill cells with sand
     game.get_board()[7][6]  = 1
     game.get_board()[3][8]  = 1
     game.get_board()[4][2]  = 1
@@ -102,6 +112,9 @@ def main():
     print("all extracted sand cells permutation : \n", game.get_permutation_list(),"\n")
     print()
     game.solve_puzzle()
+
+    # test cells activate vectors cordinates
+    
 
     
 if __name__ == "__main__":

@@ -54,7 +54,7 @@ https://www.geeksforgeeks.org/generate-all-the-permutation-of-a-list-in-python/
 
 Case A :
 
-00#000#
+00#000# `
 #000000
 #000000
 #00000#
