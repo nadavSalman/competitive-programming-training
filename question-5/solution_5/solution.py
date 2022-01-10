@@ -1,4 +1,3 @@
-from _typeshed import Self
 import numpy
 import sys
 import os
@@ -61,15 +60,14 @@ class PuzzleSolution(object):
             [0 0 0 0 0 0 * 0 0 0 0]
             [0 0 0 0 0 0 * 0 0 0 0]
             [0 0 0 0 0 0 * 0 0 0 0]
-            [* * * * * * row * * * *]
+            [* * * * * * * * * * *]
             [0 0 0 0 0 0 * 0 0 0 0]
             [0 0 0 0 0 0 * 0 0 0 0]
             [0 0 0 0 0 0 * 0 0 0 0]
             [0 0 0 0 0 0 * 0 0 0 Z]]
         """
         row , col = coordinates[0] , coordinates[1]
-        
-        cross_vectors = {   # v - vector to the board edge 
+        return  {   # v - vector to the board edge 
             'up' : [(row,v) for v in range(row+1,-1,-1)],
             'down' : [(row,v) for v in range(row-1,self.board.board_height)],
             'right': [(v,col) for v  in range(col+1,1,self.board.board_width)],
