@@ -1,3 +1,4 @@
+from _typeshed import Self
 import numpy
 import sys
 import os
@@ -50,17 +51,39 @@ class PuzzleSolution(object):
         
 
 
-
-
+    
+    def calculate_cross_vector(self,coordinates):
+        """Calculate all cross vectors from the given coordinate to the edge of the board
+        Args:
+            coordinates (Tuple): (row,col) coordinates.
+            A - (0,0) Z - (board_height - 1,board_height -1)
+           [[A 0 0 0 0 0 * 0 0 0 0]
+            [0 0 0 0 0 0 * 0 0 0 0]
+            [0 0 0 0 0 0 * 0 0 0 0]
+            [0 0 0 0 0 0 * 0 0 0 0]
+            [* * * * * * row * * * *]
+            [0 0 0 0 0 0 * 0 0 0 0]
+            [0 0 0 0 0 0 * 0 0 0 0]
+            [0 0 0 0 0 0 * 0 0 0 0]
+            [0 0 0 0 0 0 * 0 0 0 Z]]
+        """
+        row , col = coordinates[0] , coordinates[1]
+        
+        cross_vectors = {   # v - vector to the board edge 
+            'up' : [(row,v) for v in range(row+1,-1,-1)],
+            'down' : [(row,v) for v in range(row-1,self.board.board_height)],
+            'right': [(v,col) for v  in range(col+1,1,self.board.board_width)],
+            'left': [(v,col) for v in range(col-1,-1,-1)]
+        }
     
     
     def calculate_path(self,cordinates_list,board_copy,minimum,index,counter):
         if index < len(cordinates_list):
             # activate the i cell
-            x , y = cordinates_list[index][0] , cordinates_list[index][1] 
-            point_up = [(x,v) for v in range(0,self.board.board_height)]
+            row , col = cordinates_list[index][0] , cordinates_list[index][1]
             
-            pass
+            
+            
 
        
     
