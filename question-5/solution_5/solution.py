@@ -1,7 +1,9 @@
 import numpy
 import sys
 import os
-from puzzle_board  import PuzzleBoard
+from solution_5.puzzle_board import PuzzleBoard
+import pprint
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))#Add to path parent dir.
 
 class PuzzleSolution(object):
@@ -28,7 +30,6 @@ class PuzzleSolution(object):
     def get_permutation_list(self):
         return self.permutation_list
 
-
     def update_state(self,coordinate,source_board,cordinates_list):
         """Disturbed the given block of sand forward. 
         The disturbed continue recursively until we reach to an empty cell. 
@@ -39,18 +40,9 @@ class PuzzleSolution(object):
             cordinates_list
         """
 
-
-        
-
-
     def cell_activate(self,coordinate,board_copy):
         pass
         
-
-        
-
-
-    
     def calculate_cross_vector(self,coordinates):
         """Calculate all cross vectors from the given coordinate to the edge of the board
         Args:
@@ -70,7 +62,7 @@ class PuzzleSolution(object):
         return  {   # v - vector to the board edge 
             'up' : [(row,v) for v in range(row+1,-1,-1)],
             'down' : [(row,v) for v in range(row-1,self.board.board_height)],
-            'right': [(v,col) for v  in range(col+1,1,self.board.board_width)],
+            'right': [(col,v) for v  in range(col+1,1,self.board.board_width)],
             'left': [(v,col) for v in range(col-1,-1,-1)]
         }
     
@@ -79,13 +71,6 @@ class PuzzleSolution(object):
         if index < len(cordinates_list):
             # activate the i cell
             row , col = cordinates_list[index][0] , cordinates_list[index][1]
-            
-            
-            
-
-       
-    
-    
 
     def solve_puzzle(self):
         min_path = None
@@ -133,10 +118,12 @@ def main():
     print("all extracted sand cells permutation : \n", game.get_permutation_list(),"\n")
     print()
     game.solve_puzzle()
+    
 
     # test cells activate vectors cordinates
     print('extract board width and height : w ->  ',game.board.board_width,' , h -> ',game.board.board_height )
 
+    pprint.pprint(game.calculate_cross_vector((4,5)))
 
     
 if __name__ == "__main__":
