@@ -1,7 +1,8 @@
 import numpy
 import sys
 import os
-from solution_5.puzzle_board import PuzzleBoard
+from puzzle_board import PuzzleBoard
+
 import pprint
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))#Add to path parent dir.
@@ -48,22 +49,22 @@ class PuzzleSolution(object):
         Args:
             coordinates (Tuple): (row,col) coordinates.
             A - (0,0) Z - (board_height - 1,board_height -1)
-           [[A 0 0 0 0 0 * 0 0 0 0]
-            [0 0 0 0 0 0 * 0 0 0 0]
+            [0 0 0 0 0 0 * 0 0 0 Z]
+           [[0 0 0 0 0 0 * 0 0 0 0]
             [0 0 0 0 0 0 * 0 0 0 0]
             [0 0 0 0 0 0 * 0 0 0 0]
             [* * * * * * * * * * *]
             [0 0 0 0 0 0 * 0 0 0 0]
             [0 0 0 0 0 0 * 0 0 0 0]
             [0 0 0 0 0 0 * 0 0 0 0]
-            [0 0 0 0 0 0 * 0 0 0 Z]]
+            [A 0 0 0 0 0 * 0 0 0 0]]
         """
-        row , col = coordinates[0] , coordinates[1]
+        x , y = coordinates[0] , coordinates[1]
         return  {   # v - vector to the board edge 
-            'up' : [(row,v) for v in range(row+1,-1,-1)],
-            'down' : [(row,v) for v in range(row-1,self.board.board_height)],
-            'right': [(col,v) for v  in range(col+1,1,self.board.board_width)],
-            'left': [(v,col) for v in range(col-1,-1,-1)]
+            'up' : [(x,v) for v in range(y+1,1,self.board.board_height)],
+            'down' : [(x,v) for v in range(y-1,-1,-1)],
+            'right': [(v,y) for v  in range(x+1,1,self.board.board_width)],
+            'left': [(v,y) for v in range(x-1,-1,-1)]
         }
     
     
