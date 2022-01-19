@@ -63,9 +63,9 @@ class PuzzleSolution(object):
         """
         x , y = coordinates[0] , coordinates[1]
         return  {   # v - vector to the board edge 
-            'up' : [(x,v) for v in range(y+1,1,self.board.board_height)],
+            'up' : [(x,v) for v in range(y+1,self.board.board_height,1)],
             'down' : [(x,v) for v in range(y-1,-1,-1)],
-            'right': [(v,y) for v  in range(x+1,1,self.board.board_width)],
+            'right': [(v,y) for v  in range(x+1,self.board.board_width,1)],
             'left': [(v,y) for v in range(x-1,-1,-1)]
         }
     
