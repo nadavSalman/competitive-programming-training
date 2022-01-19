@@ -1,11 +1,13 @@
 import numpy
 import sys
 import os
-from puzzle_board import PuzzleBoard
 
 import pprint
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))#Add to path parent dir.
+#from puzzle_board import PuzzleBoard
+from solution_5.puzzle_board import PuzzleBoard
+
 
 class PuzzleSolution(object):
     """docstring for Ciper.
