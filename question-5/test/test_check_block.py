@@ -23,7 +23,7 @@ class TestCheckBlock(unittest.TestCase):
         column = 7
         game_board = PuzzleSolution(9,11)
         game_board.get_board()[row][column]  = 1
-        self.assertEquals(game_board.check_block(row,column),True)
+        self.assertEqual(game_board.check_block(row,column),True)
 
     '''
     Input :
@@ -44,9 +44,9 @@ class TestCheckBlock(unittest.TestCase):
         rows = 3
         columns = 4
         game_board = PuzzleSolution(rows,columns)
-        cordinates_test = (1,2)
+        cordinates_test = (1,1)
         calculate_vector = game_board.calculate_cross_vector(cordinates_test)
-        expected_vector = {   'down': [(0,1)],'left': [(1,0)],'right': [(1,2),(1,3)],'up': [(2,1)]  }
+        expected_vector = {   'down': [(1,0)],'left': [(0,1)],'right': [(2,1),(3,1)],'up': [(1,2)]  }
         self.assertEqual(calculate_vector,expected_vector)
 
         
