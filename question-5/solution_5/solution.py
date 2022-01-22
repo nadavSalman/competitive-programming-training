@@ -1,3 +1,4 @@
+from audioop import cross
 import numpy
 import sys
 import os
@@ -15,14 +16,17 @@ class PuzzleSolution(object):
     """
     def __init__(self,n_rows,m_columns):
         self.board = PuzzleBoard(int,n_rows,m_columns)
-        #self.extracted  = self.extract_sand_cells()
         self.extracted = []
-        #self.extract_sand_cells()#not get colled from the constructor
         self.permutation_list = []
-        #self.init_permutation(0)
 
     def get_board(self):
         return self.board.get_board()
+    
+    def get_board_copy(self):
+        return self.board.get_board().copy()
+    
+    def set_board(self,new_board):
+        self.board.set_board(new_board)
 
     def get_extracted(self):        
         return self.extracted
@@ -32,19 +36,6 @@ class PuzzleSolution(object):
     
     def get_permutation_list(self):
         return self.permutation_list
-
-    def update_state(self,coordinate,source_board,cordinates_list):
-        """Disturbed the given block of sand forward. 
-        The disturbed continue recursively until we reach to an empty cell. 
-
-        Args:
-            coordinate ([Tuple]): (X,Y) 
-            source_board ([Two d list]): 
-            cordinates_list
-        """
-
-    def cell_activate(self,coordinate,board_copy):
-        pass
         
     def calculate_cross_vector(self,coordinates):
         """Calculate all cross vectors from the given coordinate to the edge of the board
@@ -67,8 +58,7 @@ class PuzzleSolution(object):
             'down' : [(x,v) for v in range(y-1,-1,-1)],
             'right': [(v,y) for v  in range(x+1,self.board.board_width,1)],
             'left': [(v,y) for v in range(x-1,-1,-1)]
-        }
-    
+        }  
     
     def calculate_path(self,cordinates_list,board_copy,minimum,index,counter):
         if index < len(cordinates_list):
@@ -85,7 +75,7 @@ class PuzzleSolution(object):
         return self.board.get_board()[i][j] == 1
 
     '''
-    Conver to lmbde / list comperhention expression 
+        *Conver to lmbde / list comperhention expression 
     '''
     def extract_sand_cells(self):
         extracted_cells = []
@@ -106,6 +96,34 @@ class PuzzleSolution(object):
         else:
             self.permutation_list.append(self.extracted.copy())       
 
+    def activate_permutaion(self,permutation_list,index):
+        """activate the alist of permutaion on a board.
+           Return (int) the number of steps.
+        Args:
+            permutation_list ([list]): sand cells too activate
+        """
+        if index < len(permutation_list):
+            x = permutation_list[index][0] , y = permutation_list[index][1]
+            self.board[x][y] = 0 # activate current cell .
+            # Disturbed the given block of sand forward. 
+            cross_vectors = self.calculate_cross_vector(permutation_list[index])
+            
+            
+            
+            
+
+def update_state(self,coordinate,source_board,cordinates_list):
+    """Disturbed the given block of sand forward. 
+    The disturbed continue recursively until we reach to an empty cell. 
+
+    Args:
+        coordinate ([Tuple]): (X,Y) 
+        source_board ([Two d list]): 
+        cordinates_list
+    """
+
+
+
 def main():
     print('solution 5 \n\n')
     
@@ -114,19 +132,17 @@ def main():
     game.get_board()[7][6]  = 1
     game.get_board()[3][8]  = 1
     game.get_board()[4][2]  = 1
-    print(game.get_board()," \n") 
-    game.extract_sand_cells()
-    print('extracted sand cells : \n', game.get_extracted(),"\n")
-    game.init_permutation(0)
-    print("all extracted sand cells permutation : \n", game.get_permutation_list(),"\n")
-    print()
-    game.solve_puzzle()
+    copy_match = PuzzleSolution(9,11)
+    copy_match.set_board(game.get_board_copy())
+    copy_match.get_board()[4][2]  = 0
+    print('copy match : ',copy_match.get_board()," \n") 
+    print('source board : ',game.get_board()," \n") 
     
-
-    # test cells activate vectors cordinates
-    print('extract board width and height : w ->  ',game.board.board_width,' , h -> ',game.board.board_height )
-
-    pprint.pprint(game.calculate_cross_vector((4,5)))
+    # game.extract_sand_cells()
+    # print('extracted sand cells : \n', game.get_extracted(),"\n")
+    # game.init_permutation(0)
+    # print("all extracted sand cells permutation : \n", game.get_permutation_list(),"\n")
+    # print()
 
     
 if __name__ == "__main__":

@@ -14,7 +14,8 @@ class PuzzleBoard(object):
     
 
 
-
+    def set_board(self,new_boarrd):
+        self.board = new_boarrd
     
     '''
     A get by a board by-reff 
@@ -32,7 +33,5 @@ class PuzzleBoard(object):
     def __str__(self):
         #return super().__str__()
         return "PuzzleBoard object data : {} {} {}".format(self.board_cells_types,self.n_rows,self.m_columns)
-
-
 
 
