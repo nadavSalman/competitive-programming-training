@@ -126,13 +126,19 @@ class PuzzleSolution(object):
         return 0
 
     def chain_reaction(self,permutation_list,index):
-        self.delete_sand_sell(permutation_list[index])#update board state
-        # Disturbed the given block of sand forward. 
-        cross_vectors = self.calculate_cross_vector(permutation_list[index])
+        """Disturbed the given block of sand forward.
+        Args:
+            permutation_list ([(row,col)]): [description]
+            index integer : [description]
+        """
+        print(self.get_board())
+        self.delete_sand_sell(permutation_list[index]) #update board state
+        cross_vectors = self.calculate_cross_vector(permutation_list[index]) # Disturbed the given block of sand forward. 
         print('cross vectors for cordinate : ',permutation_list[index],' vectors \n         ->',cross_vectors)
         permutation_list = self.delet_list_elemet(permutation_list,index) # remove the current activate cell cordinate from the permutation list.
-        for key  in cross_vectors:
+        for key  in cross_vectors: # run on the cruss vector cordinate, kesy : up, down, left, right.
             for cordinate in cross_vectors[key]:
+                #print(permutation_list)
                 if cordinate in permutation_list:
                     cordinate_index = permutation_list.index(cordinate)# calculate the index to remve.
                     self.chain_reaction(permutation_list,cordinate_index)
@@ -155,9 +161,12 @@ def main():
     game.get_board()[3][2]  = 1
     game.get_board()[8][10]  = 1
     game.init_permutation(0)
+    permutation_test = [(7,6),(3,6),(3,2),(8,10)]
+    print('Start chain reaction on : ',permutation_test)
+    game.chain_reaction(permutation_test,0)
     print('source board :\n',game.get_board()," \n") 
 
-    print(game.conver_cartesian_to_board_access_point((0,10)))   
+    #print(game.conver_cartesian_to_board_access_point((0,10)))   
     
     
     
