@@ -1,4 +1,6 @@
 from audioop import cross
+from multiprocessing.dummy import active_children
+from traceback import print_tb
 import numpy
 import sys
 import os
@@ -18,6 +20,8 @@ class PuzzleSolution(object):
         self.board = PuzzleBoard(int,n_rows,m_columns)
         self.extracted = []
         self.permutation_list = []
+        self.current_list = []
+        
 
     def get_board(self):
         return self.board.get_board()
@@ -85,15 +89,12 @@ class PuzzleSolution(object):
     def check_block(self,i,j):
         return self.board.get_board()[i][j] == 1
 
-    '''
-        *Conver to lmbde / list comperhention expression 
-    '''
     def extract_sand_cells(self):
         """Scan for sand cell by row and column.
         """
         extracted_cells = []
-        for row in range(0,len(self.board.get_board())):
-          for col in range(0,len(self.board.get_board())):
+        for row in range(0,self.board.board_height):
+          for col in range(0,self.board.board_width):
               if self.check_block(row,col):
                 extracted_cells.append((row,col))
         #return extracted_cells
@@ -118,11 +119,11 @@ class PuzzleSolution(object):
         Args:
             permutation_list ([list]): sand cells too activate
         """
-        if index < len(permutation_list):
-            x = permutation_list[index][0] , y = permutation_list[index][1]
-            self.board[x][y] = 0 # activate current cell .
-            #chain_reaction(...)
-            # return 1 + activate_permutaion 
+        self.current_list = permutation_list
+        if index < len(permutation_list): # if permutation_list isn't empty
+            self.chain_reaction(permutation_list,index) # update permutation_list by passing it with ref.
+            print('permutation list : ',permutation_list)
+            return 1 +  self.activate_permutaion(permutation_list,index + 1) 
         return 0
 
     def chain_reaction(self,permutation_list,index):
@@ -131,17 +132,56 @@ class PuzzleSolution(object):
             permutation_list ([(row,col)]): [description]
             index integer : [description]
         """
-        print(self.get_board())
         self.delete_sand_sell(permutation_list[index]) #update board state
+        #print(self.get_board())
         cross_vectors = self.calculate_cross_vector(permutation_list[index]) # Disturbed the given block of sand forward. 
-        print('cross vectors for cordinate : ',permutation_list[index],' vectors \n         ->',cross_vectors)
+        #print('cross vectors for cordinate : ',permutation_list[index],' vectors \n         ->',cross_vectors)
         permutation_list = self.delet_list_elemet(permutation_list,index) # remove the current activate cell cordinate from the permutation list.
         for key  in cross_vectors: # run on the cruss vector cordinate, kesy : up, down, left, right.
             for cordinate in cross_vectors[key]:
-                #print(permutation_list)
+                #print('permutation_list -> ',permutation_list)
                 if cordinate in permutation_list:
                     cordinate_index = permutation_list.index(cordinate)# calculate the index to remve.
                     self.chain_reaction(permutation_list,cordinate_index)
+        
+        print('permutation_list',permutation_list)
+        
+        
+    def set_current_list(self,list):
+        self.current_list = list
+        
+    def activate_permutaion_beta(self,index):
+            """activate the alist of permutaion on a board.
+            Return (int) the number of steps.
+            Args:
+                permutation_list ([list]): sand cells too activate
+            """
+            if index < len(self.current_list) : # if permutation_list isn't empty
+                if self.current_list[index] == (-1,-1):
+                    return self.activate_permutaion_beta(index + 1) 
+                else:
+                    self.chain_reaction_beta(index) # update permutation_list by passing it with ref.
+                    return 1 +  self.activate_permutaion_beta(index + 1) 
+            return 0
+    
+    def chain_reaction_beta(self,index):
+        """Disturbed the given block of sand forward.
+        Args:
+            self.current_list ([(row,col)]): [description]
+            index integer : [description]
+        """
+        if index < len(self.current_list):
+            self.delete_sand_sell(self.current_list[index]) #update board state
+            cross_vectors = self.calculate_cross_vector(self.current_list[index]) # Disturbed the given block of sand forward. 
+            self.current_list[index] = (-1,-1)
+            for key  in cross_vectors: # run on the cruss vector cordinate, kesy : up, down, left, right.
+                for cordinate in cross_vectors[key]:
+                    if cordinate in self.current_list:
+                        cordinate_index = self.current_list.index(cordinate)# calculate the index to be removed.
+                        self.chain_reaction_beta(cordinate_index)
+        
+        
+        
 
     def delet_list_elemet(self,list,index):
         return list[0:index] + list[index+1:len(list)]
@@ -156,15 +196,52 @@ def main():
     
     game = PuzzleSolution(9,11)
     # Fill cells with sand
+    game.get_board()[0][0]  = 1
     game.get_board()[7][6]  = 1
     game.get_board()[3][6]  = 1
+    game.get_board()[3][10]  = 1
     game.get_board()[3][2]  = 1
     game.get_board()[8][10]  = 1
-    game.init_permutation(0)
-    permutation_test = [(7,6),(3,6),(3,2),(8,10)]
-    print('Start chain reaction on : ',permutation_test)
-    game.chain_reaction(permutation_test,0)
+    game.get_board()[5][4]  = 1
+    game.get_board()[5][0]  = 1
+    
     print('source board :\n',game.get_board()," \n") 
+    
+    game.extract_sand_cells()
+    print(f'game.get_extracted() -> \n  {game.get_extracted()} \n')
+    
+    game.init_permutation(0)
+    #print('game.get_permutation_list() -> \n')
+    #print('\n'.join(map(str, game.get_permutation_list())),'\n')
+
+    
+    
+    
+    permutation_test = [(7,6),(5,4),(3,6),(5,0),(3,2),(0,0),(8,10),(3,10)]
+    if permutation_test in game.get_permutation_list():
+        print('yes')
+        index = game.get_permutation_list().index(permutation_test)
+        print(index)
+        print(game.get_permutation_list()[index])
+        
+    valid_permutation = game.get_permutation_list()[index]
+    game.set_current_list(valid_permutation)
+    print(f'activate_permutaion_beta -> {game.activate_permutaion_beta(0)}')
+    print('Current list after selected point activation  : ',game.current_list)
+    
+    print('Post actions board state :\n',game.get_board()," \n") 
+    
+    
+    
+    
+    #print(game.activate_permutaion_beta(,0))
+    
+    
+    #print(game.activate_permutaion(permutation_test,0))
+    
+    # print('Start chain reaction on : ',permutation_test)
+    # game.chain_reaction(permutation_test,0)
+    # print('source board :\n',game.get_board()," \n") 
 
     #print(game.conver_cartesian_to_board_access_point((0,10)))   
     
@@ -183,6 +260,7 @@ def main():
     
     
     
+
     #copy_match = PuzzleSolution(9,11)
     #copy_match.set_board(game.get_board_copy())
     #copy_match.get_board()[4][2]  = 0
@@ -192,7 +270,6 @@ def main():
     
     # print("all extracted sand cells permutation : \n", game.get_permutation_list(),"\n")
     # print()
-
     
 if __name__ == "__main__":
     main()
