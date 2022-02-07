@@ -112,40 +112,6 @@ class PuzzleSolution(object):
     
     def delete_sand_sell(self,cordinates):
         self.get_board()[cordinates[0]][cordinates[1]] = 0
-
-    def activate_permutaion(self,permutation_list,index):
-        """activate the alist of permutaion on a board.
-           Return (int) the number of steps.
-        Args:
-            permutation_list ([list]): sand cells too activate
-        """
-        self.current_list = permutation_list
-        if index < len(permutation_list): # if permutation_list isn't empty
-            self.chain_reaction(permutation_list,index) # update permutation_list by passing it with ref.
-            print('permutation list : ',permutation_list)
-            return 1 +  self.activate_permutaion(permutation_list,index + 1) 
-        return 0
-
-    def chain_reaction(self,permutation_list,index):
-        """Disturbed the given block of sand forward.
-        Args:
-            permutation_list ([(row,col)]): [description]
-            index integer : [description]
-        """
-        self.delete_sand_sell(permutation_list[index]) #update board state
-        #print(self.get_board())
-        cross_vectors = self.calculate_cross_vector(permutation_list[index]) # Disturbed the given block of sand forward. 
-        #print('cross vectors for cordinate : ',permutation_list[index],' vectors \n         ->',cross_vectors)
-        permutation_list = self.delet_list_elemet(permutation_list,index) # remove the current activate cell cordinate from the permutation list.
-        for key  in cross_vectors: # run on the cruss vector cordinate, kesy : up, down, left, right.
-            for cordinate in cross_vectors[key]:
-                #print('permutation_list -> ',permutation_list)
-                if cordinate in permutation_list:
-                    cordinate_index = permutation_list.index(cordinate)# calculate the index to remve.
-                    self.chain_reaction(permutation_list,cordinate_index)
-        
-        print('permutation_list',permutation_list)
-        
         
     def set_current_list(self,list):
         self.current_list = list
@@ -200,6 +166,7 @@ def main():
     game.get_board()[7][6]  = 1
     game.get_board()[3][6]  = 1
     game.get_board()[3][10]  = 1
+    game.get_board()[0][10]  = 1
     game.get_board()[3][2]  = 1
     game.get_board()[8][10]  = 1
     game.get_board()[5][4]  = 1
@@ -210,14 +177,9 @@ def main():
     game.extract_sand_cells()
     print(f'game.get_extracted() -> \n  {game.get_extracted()} \n')
     
-    game.init_permutation(0)
-    #print('game.get_permutation_list() -> \n')
-    #print('\n'.join(map(str, game.get_permutation_list())),'\n')
-
+    game.init_permutation(0)    
     
-    
-    
-    permutation_test = [(7,6),(5,4),(3,6),(5,0),(3,2),(0,0),(8,10),(3,10)]
+    permutation_test = [(7,6),(5,4),(3,6),(5,0),(3,2),(0,0),(8,10),(0,10),(3,10)]
     if permutation_test in game.get_permutation_list():
         print('yes')
         index = game.get_permutation_list().index(permutation_test)
