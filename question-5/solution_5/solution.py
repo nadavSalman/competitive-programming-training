@@ -170,7 +170,7 @@ def main():
     game.get_board()[3][2]  = 1
     game.get_board()[8][10]  = 1
     game.get_board()[5][4]  = 1
-    game.get_board()[5][0]  = 1
+    #game.get_board()[5][0]  = 1
     
     print('source board :\n',game.get_board()," \n") 
     
@@ -179,7 +179,8 @@ def main():
     
     game.init_permutation(0)    
     
-    permutation_test = [(7,6),(5,4),(3,6),(5,0),(3,2),(0,0),(8,10),(0,10),(3,10)]
+    #permutation_test = [(7,6),(5,4),(3,6),(5,0),(3,2),(0,0),(8,10),(0,10),(3,10)]
+    permutation_test = [(7,6),(5,4),(3,6),(3,2),(0,0),(8,10),(0,10),(3,10)]
     if permutation_test in game.get_permutation_list():
         print('yes')
         index = game.get_permutation_list().index(permutation_test)
