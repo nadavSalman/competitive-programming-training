@@ -8,7 +8,7 @@ class Ciper(object):
 
 
     def __init__(self, mine_map):
-        super(Ciper, self).__init__()
+        # super(Ciper, self).__init__()
         self.mine_map = mine_map
 
 
