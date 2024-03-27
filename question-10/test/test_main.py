@@ -5,7 +5,6 @@ import unittest
 sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))#Add to path parent dir.
 
 
-from solution_8.solution import decode_atr
 
 class TestQuestion8(unittest.TestCase):
     
