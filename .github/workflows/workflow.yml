@@ -29,18 +29,3 @@ jobs:
       run: |
         pip install -r requirements.txt
         python -m unittest  -v
-   
- 
-  Run_Solutions:
-    needs: Test
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v1
-      with:
-        python-version: 3.8
-    - name: Install dependencies
-      run: |
-        python question-2/solution_2/solution.py
-        python question-4/solution_4/solution.py
